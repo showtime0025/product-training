@@ -1,7 +1,15 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { ChakraProvider } from '@chakra-ui/react'
 import './globals.css'
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <ChakraProvider>
+        <Story />
+      </ChakraProvider>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {
