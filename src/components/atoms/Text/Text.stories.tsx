@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
+import mockData from './Text.mock.json';
 
 const meta: Meta<typeof Text> = {
   title: 'Atoms/Text',
@@ -32,66 +33,51 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Body: Story = {
-  args: {
-    variant: 'body',
-    children: 'This is body text',
-  },
+  args: mockData.texts[0],
 };
 
 export const Caption: Story = {
-  args: {
-    variant: 'caption',
-    children: 'This is caption text',
-  },
+  args: mockData.texts[2],
 };
 
 export const Overline: Story = {
-  args: {
-    variant: 'overline',
-    children: 'This is overline text',
-  },
+  args: mockData.texts[3],
 };
 
 export const Heading1: Story = {
-  args: {
-    variant: 'h1',
-    children: 'Heading 1',
-  },
+  args: mockData.texts[4],
 };
 
 export const Heading2: Story = {
-  args: {
-    variant: 'h2',
-    children: 'Heading 2',
-  },
+  args: mockData.texts[5],
 };
 
 export const Heading3: Story = {
-  args: {
-    variant: 'h3',
-    children: 'Heading 3',
-  },
+  args: mockData.texts[6],
 };
 
 export const Heading4: Story = {
-  args: {
-    variant: 'h4',
-    children: 'Heading 4',
-  },
+  args: mockData.texts[7],
 };
 
 export const Heading5: Story = {
-  args: {
-    variant: 'h5',
-    children: 'Heading 5',
-  },
+  args: mockData.texts[8],
 };
 
 export const Heading6: Story = {
-  args: {
-    variant: 'h6',
-    children: 'Heading 6',
-  },
+  args: mockData.texts[9],
+};
+
+export const ErrorText: Story = {
+  args: mockData.texts[10],
+};
+
+export const SuccessText: Story = {
+  args: mockData.texts[11],
+};
+
+export const WarningText: Story = {
+  args: mockData.texts[12],
 };
 
 export const Colors: Story = {

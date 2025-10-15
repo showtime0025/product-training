@@ -1,0 +1,36 @@
+{
+  "ButtonProps": {
+    "variant": {
+      "type": "string",
+      "enum": ["primary", "secondary", "outline", "ghost"],
+      "default": "primary",
+      "description": "Visual style variant of the button"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Size of the button"
+    },
+    "children": {
+      "type": "string",
+      "required": true,
+      "description": "Button text content"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the button is disabled"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the button is in loading state"
+    },
+    "onClick": {
+      "type": "function",
+      "required": false,
+      "description": "Click event handler"
+    }
+  }
+}

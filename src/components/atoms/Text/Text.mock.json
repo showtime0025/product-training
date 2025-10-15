@@ -1,0 +1,95 @@
+{
+  "texts": [
+    {
+      "variant": "body",
+      "color": "primary",
+      "weight": "normal",
+      "align": "left",
+      "children": "This is body text with normal weight"
+    },
+    {
+      "variant": "body",
+      "color": "secondary",
+      "weight": "medium",
+      "align": "left",
+      "children": "This is secondary body text with medium weight"
+    },
+    {
+      "variant": "caption",
+      "color": "muted",
+      "weight": "normal",
+      "align": "left",
+      "children": "This is a caption with muted color"
+    },
+    {
+      "variant": "overline",
+      "color": "primary",
+      "weight": "semibold",
+      "align": "left",
+      "children": "OVERLINE TEXT"
+    },
+    {
+      "variant": "h1",
+      "color": "primary",
+      "weight": "bold",
+      "align": "center",
+      "children": "Heading 1"
+    },
+    {
+      "variant": "h2",
+      "color": "primary",
+      "weight": "semibold",
+      "align": "left",
+      "children": "Heading 2"
+    },
+    {
+      "variant": "h3",
+      "color": "primary",
+      "weight": "semibold",
+      "align": "left",
+      "children": "Heading 3"
+    },
+    {
+      "variant": "h4",
+      "color": "primary",
+      "weight": "medium",
+      "align": "left",
+      "children": "Heading 4"
+    },
+    {
+      "variant": "h5",
+      "color": "primary",
+      "weight": "medium",
+      "align": "left",
+      "children": "Heading 5"
+    },
+    {
+      "variant": "h6",
+      "color": "primary",
+      "weight": "medium",
+      "align": "left",
+      "children": "Heading 6"
+    },
+    {
+      "variant": "body",
+      "color": "error",
+      "weight": "normal",
+      "align": "left",
+      "children": "This is an error message"
+    },
+    {
+      "variant": "body",
+      "color": "success",
+      "weight": "normal",
+      "align": "left",
+      "children": "This is a success message"
+    },
+    {
+      "variant": "body",
+      "color": "warning",
+      "weight": "normal",
+      "align": "left",
+      "children": "This is a warning message"
+    }
+  ]
+}

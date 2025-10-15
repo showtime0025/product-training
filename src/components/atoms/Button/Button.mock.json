@@ -1,0 +1,60 @@
+{
+  "buttons": [
+    {
+      "variant": "primary",
+      "size": "md",
+      "children": "Primary Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "secondary",
+      "size": "md",
+      "children": "Secondary Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "outline",
+      "size": "md",
+      "children": "Outline Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "ghost",
+      "size": "md",
+      "children": "Ghost Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "primary",
+      "size": "sm",
+      "children": "Small Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "primary",
+      "size": "lg",
+      "children": "Large Button",
+      "disabled": false,
+      "loading": false
+    },
+    {
+      "variant": "primary",
+      "size": "md",
+      "children": "Disabled Button",
+      "disabled": true,
+      "loading": false
+    },
+    {
+      "variant": "primary",
+      "size": "md",
+      "children": "Loading Button",
+      "disabled": false,
+      "loading": true
+    }
+  ]
+}

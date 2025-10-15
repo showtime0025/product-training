@@ -1,0 +1,51 @@
+{
+  "InputProps": {
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "Label text for the input field"
+    },
+    "error": {
+      "type": "string",
+      "required": false,
+      "description": "Error message to display"
+    },
+    "helperText": {
+      "type": "string",
+      "required": false,
+      "description": "Helper text to display below the input"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text for the input"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["text", "email", "password", "number", "tel", "url", "search"],
+      "default": "text",
+      "description": "Input type"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "Input value"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the input is disabled"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the input is required"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Input size"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "inputs": [
+    {
+      "label": "Email Address",
+      "placeholder": "Enter your email",
+      "type": "email",
+      "value": "",
+      "disabled": false,
+      "required": true,
+      "size": "md"
+    },
+    {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "type": "password",
+      "value": "",
+      "disabled": false,
+      "required": true,
+      "size": "md"
+    },
+    {
+      "label": "Full Name",
+      "placeholder": "Enter your full name",
+      "type": "text",
+      "value": "",
+      "disabled": false,
+      "required": true,
+      "size": "md",
+      "helperText": "This will be displayed on your profile"
+    },
+    {
+      "label": "Phone Number",
+      "placeholder": "+1 (555) 123-4567",
+      "type": "tel",
+      "value": "",
+      "disabled": false,
+      "required": false,
+      "size": "md"
+    },
+    {
+      "label": "Website",
+      "placeholder": "https://example.com",
+      "type": "url",
+      "value": "",
+      "disabled": false,
+      "required": false,
+      "size": "md"
+    },
+    {
+      "label": "Search",
+      "placeholder": "Search products...",
+      "type": "search",
+      "value": "",
+      "disabled": false,
+      "required": false,
+      "size": "md"
+    },
+    {
+      "label": "Age",
+      "placeholder": "Enter your age",
+      "type": "number",
+      "value": "",
+      "disabled": false,
+      "required": false,
+      "size": "sm"
+    },
+    {
+      "label": "Company Name",
+      "placeholder": "Enter company name",
+      "type": "text",
+      "value": "",
+      "disabled": false,
+      "required": false,
+      "size": "lg"
+    },
+    {
+      "label": "Disabled Field",
+      "placeholder": "This field is disabled",
+      "type": "text",
+      "value": "Disabled value",
+      "disabled": true,
+      "required": false,
+      "size": "md"
+    },
+    {
+      "label": "Field with Error",
+      "placeholder": "Enter valid data",
+      "type": "text",
+      "value": "invalid data",
+      "disabled": false,
+      "required": true,
+      "size": "md",
+      "error": "This field is required and must be valid"
+    }
+  ]
+}

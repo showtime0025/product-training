@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
+import mockData from './Button.mock.json';
 
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -27,59 +28,39 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    children: 'Button',
-  },
+  args: mockData.buttons[0],
 };
 
 export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Button',
-  },
+  args: mockData.buttons[1],
 };
 
 export const Outline: Story = {
-  args: {
-    variant: 'outline',
-    children: 'Button',
-  },
+  args: mockData.buttons[2],
 };
 
 export const Ghost: Story = {
-  args: {
-    variant: 'ghost',
-    children: 'Button',
-  },
+  args: mockData.buttons[3],
 };
 
 export const Small: Story = {
-  args: {
-    size: 'sm',
-    children: 'Small Button',
-  },
+  args: mockData.buttons[4],
 };
 
 export const Medium: Story = {
-  args: {
-    size: 'md',
-    children: 'Medium Button',
-  },
+  args: mockData.buttons[0],
 };
 
 export const Large: Story = {
-  args: {
-    size: 'lg',
-    children: 'Large Button',
-  },
+  args: mockData.buttons[5],
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    children: 'Disabled Button',
-  },
+  args: mockData.buttons[6],
+};
+
+export const Loading: Story = {
+  args: mockData.buttons[7],
 };
 
 export const AllVariants: Story = {

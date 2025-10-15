@@ -1,0 +1,114 @@
+{
+  "icons": [
+    {
+      "name": "search",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "user",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "email",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "phone",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "heart",
+      "size": "md",
+      "color": "error"
+    },
+    {
+      "name": "star",
+      "size": "md",
+      "color": "warning"
+    },
+    {
+      "name": "home",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "menu",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "close",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "arrow",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "plus",
+      "size": "md",
+      "color": "success"
+    },
+    {
+      "name": "minus",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "check",
+      "size": "md",
+      "color": "success"
+    },
+    {
+      "name": "edit",
+      "size": "md",
+      "color": "primary"
+    },
+    {
+      "name": "delete",
+      "size": "md",
+      "color": "error"
+    },
+    {
+      "name": "star",
+      "size": "sm",
+      "color": "warning"
+    },
+    {
+      "name": "star",
+      "size": "lg",
+      "color": "warning"
+    },
+    {
+      "name": "star",
+      "size": "xl",
+      "color": "warning"
+    },
+    {
+      "name": "heart",
+      "size": "sm",
+      "color": "error"
+    },
+    {
+      "name": "heart",
+      "size": "lg",
+      "color": "error"
+    },
+    {
+      "name": "search",
+      "size": "sm",
+      "color": "secondary"
+    },
+    {
+      "name": "search",
+      "size": "lg",
+      "color": "secondary"
+    }
+  ]
+}

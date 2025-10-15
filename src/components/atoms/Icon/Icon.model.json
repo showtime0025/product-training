@@ -1,0 +1,22 @@
+{
+  "IconProps": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "enum": ["search", "user", "email", "phone", "heart", "star", "home", "menu", "close", "arrow", "plus", "minus", "check", "edit", "delete"],
+      "description": "Icon name identifier"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg", "xl"],
+      "default": "md",
+      "description": "Icon size"
+    },
+    "color": {
+      "type": "string",
+      "enum": ["primary", "secondary", "muted", "error", "success", "warning"],
+      "default": "primary",
+      "description": "Icon color theme"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "TextProps": {
+    "as": {
+      "type": "string",
+      "enum": ["p", "span", "div", "h1", "h2", "h3", "h4", "h5", "h6"],
+      "description": "HTML element to render"
+    },
+    "variant": {
+      "type": "string",
+      "enum": ["body", "caption", "overline", "h1", "h2", "h3", "h4", "h5", "h6"],
+      "default": "body",
+      "description": "Text style variant"
+    },
+    "color": {
+      "type": "string",
+      "enum": ["primary", "secondary", "muted", "error", "success", "warning"],
+      "default": "primary",
+      "description": "Text color theme"
+    },
+    "weight": {
+      "type": "string",
+      "enum": ["normal", "medium", "semibold", "bold"],
+      "default": "normal",
+      "description": "Font weight"
+    },
+    "align": {
+      "type": "string",
+      "enum": ["left", "center", "right"],
+      "default": "left",
+      "description": "Text alignment"
+    },
+    "children": {
+      "type": "string",
+      "required": true,
+      "description": "Text content"
+    }
+  }
+}

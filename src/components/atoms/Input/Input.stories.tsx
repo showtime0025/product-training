@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from './Input';
+import mockData from './Input.mock.json';
 
 const meta: Meta<typeof Input> = {
   title: 'Atoms/Input',
@@ -26,51 +27,51 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    placeholder: 'Enter text...',
-  },
+  args: mockData.inputs[0],
 };
 
 export const WithLabel: Story = {
-  args: {
-    label: 'Email Address',
-    placeholder: 'Enter your email',
-    type: 'email',
-  },
+  args: mockData.inputs[0],
 };
 
 export const WithHelperText: Story = {
-  args: {
-    label: 'Password',
-    type: 'password',
-    placeholder: 'Enter your password',
-    helperText: 'Must be at least 8 characters long',
-  },
+  args: mockData.inputs[2],
 };
 
 export const WithError: Story = {
-  args: {
-    label: 'Email Address',
-    type: 'email',
-    placeholder: 'Enter your email',
-    error: 'Please enter a valid email address',
-  },
+  args: mockData.inputs[9],
 };
 
 export const Disabled: Story = {
-  args: {
-    label: 'Disabled Input',
-    placeholder: 'This input is disabled',
-    disabled: true,
-  },
+  args: mockData.inputs[8],
 };
 
 export const Required: Story = {
-  args: {
-    label: 'Required Field',
-    placeholder: 'This field is required',
-    required: true,
-  },
+  args: mockData.inputs[0],
+};
+
+export const Password: Story = {
+  args: mockData.inputs[1],
+};
+
+export const Phone: Story = {
+  args: mockData.inputs[3],
+};
+
+export const Website: Story = {
+  args: mockData.inputs[4],
+};
+
+export const Search: Story = {
+  args: mockData.inputs[5],
+};
+
+export const Age: Story = {
+  args: mockData.inputs[6],
+};
+
+export const Company: Story = {
+  args: mockData.inputs[7],
 };
 
 export const DifferentTypes: Story = {

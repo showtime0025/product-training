@@ -1,0 +1,573 @@
+---
+alwaysApply: true
+---
+# Coding Standards
+
+This document outlines the coding standards and best practices for the Product Training application. These standards ensure consistency, maintainability, and code quality across the entire project.
+
+## Table of Contents
+
+1. [Project Structure](#project-structure)
+2. [TypeScript Standards](#typescript-standards)
+3. [React Component Standards](#react-component-standards)
+4. [CSS and Styling Standards](#css-and-styling-standards)
+5. [File Naming Conventions](#file-naming-conventions)
+6. [Import and Export Standards](#import-and-export-standards)
+7. [Storybook Standards](#storybook-standards)
+8. [Testing Standards](#testing-standards)
+9. [Documentation Standards](#documentation-standards)
+10. [Git and Version Control](#git-and-version-control)
+
+## Project Structure
+
+### Atomic Design Architecture
+
+The project follows the Atomic Design methodology with a clear component hierarchy:
+
+```
+src/components/
+├── atoms/          # Basic building blocks (Button, Input, Text, Icon)
+├── molecules/      # Simple combinations of atoms (Card, FormField, SearchBox)
+├── organisms/      # Complex UI components (Header, Footer, ProductList)
+└── index.ts        # Barrel exports for clean imports
+```
+
+### Component Directory Structure
+
+Each component follows this standardized structure:
+
+```
+ComponentName/
+├── ComponentName.tsx           # Main component file
+├── ComponentName.module.css    # Component-specific styles
+├── ComponentName.stories.tsx   # Storybook stories
+├── ComponentName.mock.json     # Mock data for stories
+├── ComponentName.model.json    # Type definitions/model
+├── index.ts                    # Barrel export
+└── README.md                   # Component documentation (optional)
+```
+
+## TypeScript Standards
+
+### Type Definitions
+
+- **Use explicit interfaces** for component props extending base types:
+  ```typescript
+  export interface ButtonProps extends ChakraButtonProps {
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    size?: 'sm' | 'md' | 'lg';
+    children: React.ReactNode;
+  }
+  ```
+
+- **Prefer union types** for limited options:
+  ```typescript
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  ```
+
+- **Use generic types** for reusable components:
+  ```typescript
+  export interface ProductListProps<T = Product> {
+    items: T[];
+    renderItem: (item: T) => React.ReactNode;
+  }
+  ```
+
+### Type Safety
+
+- **Enable strict TypeScript** configuration:
+  ```json
+  {
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  }
+  ```
+
+- **Use proper type annotations** for function parameters and return values
+- **Avoid `any` type** - use `unknown` or specific types instead
+- **Use type guards** for runtime type checking
+
+### Path Aliases
+
+- Use the configured path alias `@/*` for imports:
+  ```typescript
+  import { Button } from '@/components/atoms/Button';
+  import { ProductList } from '@/components/organisms/ProductList';
+  ```
+
+## React Component Standards
+
+### Component Structure
+
+1. **Import order**:
+   ```typescript
+   // 1. React imports
+   import React from 'react';
+   
+   // 2. Third-party libraries
+   import { Button as ChakraButton } from '@chakra-ui/react';
+   
+   // 3. Internal components (atoms, molecules, organisms)
+   import { Text } from '../../atoms/Text';
+   
+   // 4. Styles
+   import styles from './ComponentName.module.css';
+   ```
+
+2. **Interface definition** before component:
+   ```typescript
+   export interface ComponentProps {
+     // Props definition
+   }
+   ```
+
+3. **Component declaration** with explicit typing:
+   ```typescript
+   export const ComponentName: React.FC<ComponentProps> = ({
+     // Destructured props with defaults
+   }) => {
+     // Component logic
+   };
+   ```
+
+### Props Handling
+
+- **Destructure props** with default values:
+  ```typescript
+  export const Button: React.FC<ButtonProps> = ({
+    variant = 'primary',
+    size = 'md',
+    children,
+    ...props
+  }) => {
+    // Component implementation
+  };
+  ```
+
+- **Use rest/spread operator** for additional props:
+  ```typescript
+  <ChakraButton
+    variant={chakraVariant}
+    size={size}
+    {...props}  // Spread remaining props
+  >
+    {children}
+  </ChakraButton>
+  ```
+
+### Event Handling
+
+- **Use optional chaining** for event handlers:
+  ```typescript
+  onClick={() => onProductClick?.(product)}
+  ```
+
+- **Prevent event propagation** when needed:
+  ```typescript
+  onClick={(e) => {
+    e.stopPropagation();
+    onFavorite?.(product);
+  }}
+  ```
+
+### Conditional Rendering
+
+- **Use early returns** for loading/error states:
+  ```typescript
+  if (loading) {
+    return <LoadingComponent />;
+  }
+  
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
+  ```
+
+- **Use logical operators** for simple conditions:
+  ```typescript
+  {showFavorite && (
+    <Button variant="ghost" size="sm">
+      <Icon name="heart" />
+    </Button>
+  )}
+  ```
+
+## CSS and Styling Standards
+
+### CSS Modules
+
+- **Use CSS Modules** for component-specific styles
+- **Follow BEM-like naming** for CSS classes:
+  ```css
+  .button { }                    /* Block */
+  .button--primary { }           /* Modifier */
+  .button__icon { }              /* Element */
+  ```
+
+### CSS Organization
+
+1. **Base styles** first:
+   ```css
+   .component {
+     /* Base styles */
+   }
+   ```
+
+2. **Variants** grouped together:
+   ```css
+   /* Variants */
+   .primary { }
+   .secondary { }
+   .outline { }
+   ```
+
+3. **Sizes** grouped together:
+   ```css
+   /* Sizes */
+   .sm { }
+   .md { }
+   .lg { }
+   ```
+
+4. **States** (hover, focus, disabled):
+   ```css
+   .button:hover:not(:disabled) { }
+   .button:disabled { }
+   ```
+
+### CSS Properties
+
+- **Use consistent spacing** with a defined scale (4px, 8px, 12px, 16px, 24px)
+- **Use CSS custom properties** for theme values:
+  ```css
+  :root {
+    --color-primary: #3b82f6;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+  }
+  ```
+
+- **Use logical properties** when possible:
+  ```css
+  margin-inline-start: 16px;  /* Instead of margin-left */
+  ```
+
+### Responsive Design
+
+- **Mobile-first approach** with media queries:
+  ```css
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  ```
+
+## File Naming Conventions
+
+### Files and Directories
+
+- **PascalCase** for component directories: `Button/`, `ProductList/`
+- **PascalCase** for component files: `Button.tsx`, `ProductList.tsx`
+- **camelCase** for utility files: `utils.ts`, `helpers.ts`
+- **kebab-case** for configuration files: `eslint.config.mjs`, `next.config.ts`
+
+### CSS Files
+
+- **PascalCase.module.css** for CSS Modules: `Button.module.css`
+- **globals.css** for global styles
+
+### Storybook Files
+
+- **ComponentName.stories.tsx** for story files
+- **ComponentName.mock.json** for mock data
+- **ComponentName.model.json** for type definitions
+
+## Import and Export Standards
+
+### Barrel Exports
+
+Each component directory should have an `index.ts` file for clean imports:
+
+```typescript
+// index.ts
+export { ComponentName } from './ComponentName';
+export type { ComponentNameProps } from './ComponentName';
+```
+
+### Import Organization
+
+1. **React and React-related imports**
+2. **Third-party libraries** (alphabetical order)
+3. **Internal components** (grouped by hierarchy: atoms, molecules, organisms)
+4. **Utilities and helpers**
+5. **Types and interfaces**
+6. **Styles and assets**
+
+### Named vs Default Exports
+
+- **Use named exports** for components:
+  ```typescript
+  export const Button: React.FC<ButtonProps> = () => {};
+  ```
+
+- **Use default exports** only for:
+  - Next.js pages (`export default function Page()`)
+  - Storybook meta configurations (`export default meta;`)
+  - Configuration files
+
+## Storybook Standards
+
+### Story Structure
+
+Each component must have comprehensive stories:
+
+```typescript
+import type { Meta, StoryObj } from '@storybook/react';
+import { Component } from './Component';
+
+const meta: Meta<typeof Component> = {
+  title: 'Category/Component',
+  component: Component,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    // Define controls for all interactive props
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    // Default props
+  },
+};
+```
+
+### Story Categories
+
+- **Default**: Basic usage
+- **Variants**: Different prop variations
+- **States**: Loading, error, disabled states
+- **Interactive**: Stories with controls
+- **Examples**: Real-world usage scenarios
+
+### Story Requirements
+
+- **All interactive props** must have controls defined
+- **Comprehensive examples** showing different use cases
+- **Accessibility considerations** documented
+- **Responsive behavior** tested with viewport addon
+
+## Testing Standards
+
+### Test Structure
+
+- **Unit tests** for individual components
+- **Integration tests** for component interactions
+- **Visual regression tests** through Storybook
+- **Accessibility tests** using Storybook a11y addon
+
+### Test Files
+
+- **ComponentName.test.tsx** for unit tests
+- **ComponentName.stories.tsx** for visual tests
+- **vitest.setup.ts** for test configuration
+
+### Testing Best Practices
+
+- **Test user interactions** and component behavior
+- **Mock external dependencies**
+- **Use semantic queries** (getByRole, getByLabelText)
+- **Test accessibility** features
+- **Cover edge cases** and error states
+
+## Documentation Standards
+
+### Component Documentation
+
+Each component should include:
+
+1. **Purpose and usage** description
+2. **Props documentation** with types and descriptions
+3. **Examples** of different use cases
+4. **Accessibility considerations**
+5. **Performance notes** if applicable
+
+### Code Comments
+
+- **Use JSDoc** for function documentation:
+  ```typescript
+  /**
+   * Renders a product list with optional filtering and sorting
+   * @param products - Array of products to display
+   * @param onProductClick - Callback when a product is clicked
+   */
+  export const ProductList: React.FC<ProductListProps> = ({
+    products,
+    onProductClick,
+  }) => {
+    // Implementation
+  };
+  ```
+
+- **Comment complex logic** and business rules
+- **Avoid obvious comments** that don't add value
+
+### README Files
+
+- **Component READMEs** for complex components
+- **Project README** with setup and development instructions
+- **API documentation** for utilities and helpers
+
+## Git and Version Control
+
+### Commit Messages
+
+Use conventional commit format:
+
+```
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+### Branch Naming
+
+- **feature/component-name** for new features
+- **fix/issue-description** for bug fixes
+- **refactor/component-name** for refactoring
+- **docs/update-description** for documentation updates
+
+### Pull Request Standards
+
+- **Descriptive titles** and detailed descriptions
+- **Link to related issues** or tickets
+- **Include screenshots** for UI changes
+- **Request reviews** from appropriate team members
+- **Ensure all tests pass** before merging
+
+## Code Quality Tools
+
+### Linting and Formatting
+
+- **ESLint** with Next.js and TypeScript configurations
+- **Prettier** for code formatting (if configured)
+- **TypeScript compiler** for type checking
+
+### Pre-commit Hooks
+
+Recommended pre-commit checks:
+- Lint code
+- Type check
+- Run tests
+- Format code
+
+### Continuous Integration
+
+- **Automated testing** on pull requests
+- **Type checking** and linting
+- **Build verification**
+- **Deployment** to staging environment
+
+## Performance Standards
+
+### Component Performance
+
+- **Use React.memo** for expensive components
+- **Optimize re-renders** with proper dependency arrays
+- **Lazy load** heavy components when appropriate
+- **Minimize bundle size** with proper imports
+
+### Image Optimization
+
+- **Use Next.js Image component** for optimized images
+- **Provide proper alt text** for accessibility
+- **Use appropriate image formats** (WebP, AVIF when supported)
+
+### Bundle Optimization
+
+- **Tree shaking** friendly imports
+- **Code splitting** at route level
+- **Dynamic imports** for heavy libraries
+
+## Security Standards
+
+### Input Validation
+
+- **Validate all user inputs**
+- **Sanitize data** before processing
+- **Use TypeScript** for compile-time type safety
+
+### XSS Prevention
+
+- **Avoid dangerouslySetInnerHTML** unless absolutely necessary
+- **Sanitize HTML content** if needed
+- **Use proper escaping** for user-generated content
+
+### Dependencies
+
+- **Keep dependencies updated**
+- **Audit packages** for vulnerabilities
+- **Use lock files** for reproducible builds
+
+## Accessibility Standards
+
+### WCAG Compliance
+
+- **Follow WCAG 2.1 AA guidelines**
+- **Test with screen readers**
+- **Ensure keyboard navigation**
+- **Provide proper color contrast**
+
+### Semantic HTML
+
+- **Use semantic elements** (button, nav, main, etc.)
+- **Proper heading hierarchy** (h1, h2, h3)
+- **Form labels** and associations
+- **ARIA attributes** when needed
+
+### Testing Accessibility
+
+- **Storybook a11y addon** for automated checks
+- **Manual testing** with assistive technologies
+- **Color contrast testing**
+- **Keyboard navigation testing**
+
+---
+
+## Enforcement
+
+These standards should be enforced through:
+
+1. **Code reviews** - All pull requests must follow these standards
+2. **Automated tools** - ESLint, TypeScript, and Prettier configurations
+3. **Documentation** - Keep this document updated as standards evolve
+4. **Team training** - Regular reviews and updates on best practices
+
+## Updates
+
+This document should be reviewed and updated regularly to reflect:
+- New technologies and patterns
+- Team feedback and improvements
+- Industry best practices
+- Project-specific requirements
+
+---
+
+*Last updated: [Current Date]*
+*Version: 1.0*

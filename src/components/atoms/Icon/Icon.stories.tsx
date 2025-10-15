@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
+import mockData from './Icon.mock.json';
 
 const meta: Meta<typeof Icon> = {
   title: 'Atoms/Icon',
@@ -31,81 +32,91 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Search: Story = {
-  args: {
-    name: 'search',
-  },
+  args: mockData.icons[0],
 };
 
 export const User: Story = {
-  args: {
-    name: 'user',
-  },
+  args: mockData.icons[1],
 };
 
 export const Heart: Story = {
-  args: {
-    name: 'heart',
-  },
+  args: mockData.icons[4],
 };
 
 export const Star: Story = {
-  args: {
-    name: 'star',
-  },
+  args: mockData.icons[5],
 };
 
 export const Home: Story = {
-  args: {
-    name: 'home',
-  },
+  args: mockData.icons[6],
 };
 
 export const Menu: Story = {
-  args: {
-    name: 'menu',
-  },
+  args: mockData.icons[7],
 };
 
 export const Close: Story = {
-  args: {
-    name: 'close',
-  },
+  args: mockData.icons[8],
 };
 
 export const Arrow: Story = {
-  args: {
-    name: 'arrow',
-  },
+  args: mockData.icons[9],
 };
 
 export const Plus: Story = {
-  args: {
-    name: 'plus',
-  },
+  args: mockData.icons[10],
 };
 
 export const Minus: Story = {
-  args: {
-    name: 'minus',
-  },
+  args: mockData.icons[11],
 };
 
 export const Check: Story = {
-  args: {
-    name: 'check',
-  },
+  args: mockData.icons[12],
 };
 
 export const Edit: Story = {
-  args: {
-    name: 'edit',
-  },
+  args: mockData.icons[13],
 };
 
 export const Delete: Story = {
-  args: {
-    name: 'delete',
-  },
+  args: mockData.icons[14],
+};
+
+export const Email: Story = {
+  args: mockData.icons[2],
+};
+
+export const Phone: Story = {
+  args: mockData.icons[3],
+};
+
+export const SmallStar: Story = {
+  args: mockData.icons[15],
+};
+
+export const LargeStar: Story = {
+  args: mockData.icons[16],
+};
+
+export const ExtraLargeStar: Story = {
+  args: mockData.icons[17],
+};
+
+export const SmallHeart: Story = {
+  args: mockData.icons[18],
+};
+
+export const LargeHeart: Story = {
+  args: mockData.icons[19],
+};
+
+export const SmallSearch: Story = {
+  args: mockData.icons[20],
+};
+
+export const LargeSearch: Story = {
+  args: mockData.icons[21],
 };
 
 export const Sizes: Story = {
