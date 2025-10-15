@@ -1,18 +1,10 @@
-/* CSS Custom Properties */
-:root {
-  --search-box-gap: 12px;
-  --search-box-icon-size: 16px;
-  --search-box-icon-padding: 12px;
-  --search-box-clear-padding: 4px;
-  --search-box-clear-right: 8px;
-  --search-box-input-padding-left: 40px;
-  --breakpoint-mobile: 640px;
-}
+/* Import design tokens */
+@import '../../../tokens/globals.css';
 
 /* Block */
 .searchBox {
   display: flex;
-  gap: var(--search-box-gap);
+  gap: var(--spacing-3);
   align-items: flex-end;
 }
 
@@ -24,27 +16,27 @@
 
 .searchBox__searchIcon {
   position: absolute;
-  left: var(--search-box-icon-padding);
+  left: var(--spacing-3);
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1;
+  z-index: var(--z-index-base);
 }
 
 .searchBox__input {
-  padding-left: var(--search-box-input-padding-left);
+  padding-left: var(--spacing-10);
 }
 
 .searchBox__clearButton {
   position: absolute;
-  right: var(--search-box-clear-right);
+  right: var(--spacing-2);
   top: 50%;
   transform: translateY(-50%);
-  padding: var(--search-box-clear-padding);
+  padding: var(--spacing-1);
   min-width: auto;
 }
 
 /* Responsive Design - Mobile First */
-@media (max-width: 640px) {
+@media (max-width: var(--breakpoint-sm)) {
   .searchBox {
     flex-direction: column;
     align-items: stretch;

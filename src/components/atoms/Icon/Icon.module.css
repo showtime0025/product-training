@@ -1,3 +1,6 @@
+/* Import design tokens */
+@import '../../../tokens/globals.css';
+
 .icon {
   display: inline-block;
   flex-shrink: 0;
@@ -5,46 +8,46 @@
 
 /* Sizes */
 .sm {
-  width: 16px;
-  height: 16px;
+  width: var(--spacing-4);
+  height: var(--spacing-4);
 }
 
 .md {
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5);
+  height: var(--spacing-5);
 }
 
 .lg {
-  width: 24px;
-  height: 24px;
+  width: var(--spacing-6);
+  height: var(--spacing-6);
 }
 
 .xl {
-  width: 32px;
-  height: 32px;
+  width: var(--spacing-8);
+  height: var(--spacing-8);
 }
 
 /* Colors */
 .primary {
-  color: #111827;
+  color: var(--color-foreground-light);
 }
 
 .secondary {
-  color: #6b7280;
+  color: var(--color-secondary-600);
 }
 
 .muted {
-  color: #9ca3af;
+  color: var(--color-secondary-400);
 }
 
 .error {
-  color: #ef4444;
+  color: var(--color-error-500);
 }
 
 .success {
-  color: #10b981;
+  color: var(--color-success-500);
 }
 
 .warning {
-  color: #f59e0b;
+  color: var(--color-warning-500);
 }

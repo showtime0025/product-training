@@ -1,19 +1,22 @@
+/* Import design tokens */
+@import '../../../tokens/globals.css';
+
 .header {
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--color-secondary-200);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: var(--z-index-sticky);
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: var(--spacing-4) var(--spacing-6);
   max-width: 1200px;
   margin: 0 auto;
-  gap: 24px;
+  gap: var(--spacing-6);
 }
 
 .brand {
@@ -21,30 +24,30 @@
 }
 
 .title {
-  color: #111827;
+  color: var(--color-foreground-light);
 }
 
 .navigation {
   display: flex;
-  gap: 32px;
+  gap: var(--spacing-8);
   align-items: center;
 }
 
 .navLink {
   text-decoration: none;
-  color: #6b7280;
-  font-weight: 500;
-  font-size: 16px;
-  transition: color 0.2s ease-in-out;
-  padding: 8px 0;
+  color: var(--color-secondary-600);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  transition: color var(--transition-duration-fast) var(--transition-easing-ease-in-out);
+  padding: var(--spacing-2) 0;
 }
 
 .navLink:hover {
-  color: #111827;
+  color: var(--color-foreground-light);
 }
 
 .navLink.active {
-  color: #3b82f6;
+  color: var(--color-primary-500);
 }
 
 .search {
@@ -66,38 +69,38 @@
 
 .mobileMenu {
   display: none;
-  border-top: 1px solid #e5e7eb;
-  background-color: white;
+  border-top: 1px solid var(--color-secondary-200);
+  background-color: var(--background);
 }
 
 .mobileNavigation {
   display: flex;
   flex-direction: column;
-  padding: 16px 24px;
-  gap: 16px;
+  padding: var(--spacing-4) var(--spacing-6);
+  gap: var(--spacing-4);
 }
 
 .mobileNavLink {
   text-decoration: none;
-  color: #6b7280;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 8px 0;
-  transition: color 0.2s ease-in-out;
+  color: var(--color-secondary-600);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-2) 0;
+  transition: color var(--transition-duration-fast) var(--transition-easing-ease-in-out);
 }
 
 .mobileNavLink:hover {
-  color: #111827;
+  color: var(--color-foreground-light);
 }
 
 .mobileNavLink.active {
-  color: #3b82f6;
+  color: var(--color-primary-500);
 }
 
-@media (max-width: 768px) {
+@media (max-width: var(--breakpoint-md)) {
   .container {
-    padding: 12px 16px;
-    gap: 16px;
+    padding: var(--spacing-3) var(--spacing-4);
+    gap: var(--spacing-4);
   }
 
   .navigation {

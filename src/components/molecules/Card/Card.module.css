@@ -1,23 +1,11 @@
-/* CSS Custom Properties */
-:root {
-  --card-bg-color: white;
-  --card-border-radius: 8px;
-  --card-border-color: #e5e7eb;
-  --card-border-color-outlined: #d1d5db;
-  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 24px;
-}
+/* Import design tokens */
+@import '../../../tokens/globals.css';
 
 /* Block */
 .card {
-  background-color: var(--card-bg-color);
-  border-radius: var(--card-border-radius);
-  transition: all 0.2s ease-in-out;
+  background-color: var(--background);
+  border-radius: var(--border-radius-lg);
+  transition: all var(--transition-duration-fast) var(--transition-easing-ease-in-out);
 }
 
 /* Modifiers */
@@ -31,20 +19,20 @@
 
 /* Variants */
 .card--default {
-  border: 1px solid var(--card-border-color);
+  border: 1px solid var(--color-secondary-200);
 }
 
 .card--outlined {
-  border: 2px solid var(--card-border-color-outlined);
+  border: 2px solid var(--color-secondary-300);
 }
 
 .card--elevated {
-  border: 1px solid var(--card-border-color);
-  box-shadow: var(--card-shadow);
+  border: 1px solid var(--color-secondary-200);
+  box-shadow: var(--shadow-md);
 }
 
 .card--elevated.card--clickable:hover {
-  box-shadow: var(--card-shadow-hover);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Padding Modifiers */
@@ -53,24 +41,24 @@
 }
 
 .card--padding-sm {
-  padding: var(--spacing-md);
+  padding: var(--spacing-3);
 }
 
 .card--padding-md {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-4);
 }
 
 .card--padding-lg {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-6);
 }
 
 /* Elements */
 .card__header {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-3);
 }
 
 .card__title {
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-1);
 }
 
 .card__subtitle {

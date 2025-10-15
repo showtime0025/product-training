@@ -5,6 +5,20 @@ import { Text } from '../../atoms/Text';
 import { SearchBox } from '../../molecules/SearchBox';
 import styles from './Header.module.css';
 
+export interface HeaderProps {
+  logo?: React.ReactNode;
+  title?: string;
+  showSearch?: boolean;
+  onSearch?: (query: string) => void;
+  navigationItems?: Array<{
+    label: string;
+    href: string;
+    active?: boolean;
+  }>;
+  userMenu?: React.ReactNode;
+  className?: string;
+}
+
 export const Header: React.FC<HeaderProps> = ({
   logo,
   title = 'Product Training',

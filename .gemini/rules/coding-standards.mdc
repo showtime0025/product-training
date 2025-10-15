@@ -8,15 +8,16 @@ This document outlines the coding standards and best practices for the Product T
 ## Table of Contents
 
 1. [Project Structure](#project-structure)
-2. [TypeScript Standards](#typescript-standards)
-3. [React Component Standards](#react-component-standards)
-4. [CSS and Styling Standards](#css-and-styling-standards)
-5. [File Naming Conventions](#file-naming-conventions)
-6. [Import and Export Standards](#import-and-export-standards)
-7. [Storybook Standards](#storybook-standards)
-8. [Testing Standards](#testing-standards)
-9. [Documentation Standards](#documentation-standards)
-10. [Git and Version Control](#git-and-version-control)
+2. [Design Tokens System](#design-tokens-system)
+3. [TypeScript Standards](#typescript-standards)
+4. [React Component Standards](#react-component-standards)
+5. [CSS and Styling Standards](#css-and-styling-standards)
+6. [File Naming Conventions](#file-naming-conventions)
+7. [Import and Export Standards](#import-and-export-standards)
+8. [Storybook Standards](#storybook-standards)
+9. [Testing Standards](#testing-standards)
+10. [Documentation Standards](#documentation-standards)
+11. [Git and Version Control](#git-and-version-control)
 
 ## Project Structure
 
@@ -32,6 +33,18 @@ src/components/
 └── index.ts        # Barrel exports for clean imports
 ```
 
+### Design Tokens Structure
+
+The project includes a comprehensive design tokens system:
+
+```
+src/tokens/
+├── tokens.ts           # Main design tokens definition
+├── types.ts            # TypeScript type definitions
+├── index.ts            # Barrel exports and utility functions
+└── globals.css         # CSS custom properties and global styles
+```
+
 ### Component Directory Structure
 
 Each component follows this standardized structure:
@@ -45,6 +58,129 @@ ComponentName/
 ├── ComponentName.model.json    # Type definitions/model
 ├── index.ts                    # Barrel export
 └── README.md                   # Component documentation (optional)
+```
+
+## Design Tokens System
+
+### Token Categories
+
+The design tokens system provides a comprehensive set of design values:
+
+- **Colors**: Primary, secondary, semantic (success, warning, error), neutral, and theme-aware colors
+- **Typography**: Font families, sizes, weights, line heights, and letter spacing
+- **Spacing**: Consistent spacing scale from 0 to 96 (in rem units)
+- **Border Radius**: Standardized border radius values
+- **Shadows**: Box shadow definitions for elevation
+- **Z-Index**: Layering system for UI elements
+- **Breakpoints**: Responsive design breakpoints
+- **Transitions**: Duration and easing functions
+- **Component Tokens**: Component-specific sizing and spacing
+
+### Token Usage
+
+#### Importing Tokens
+
+```typescript
+// Import specific token categories
+import { colors, spacing, typography } from '@/tokens';
+
+// Import utility functions
+import { getColor, getSpacing, getFontSize } from '@/tokens';
+
+// Import types for type safety
+import type { ColorScale, SpacingKey, FontSizeKey } from '@/tokens';
+```
+
+#### Using Tokens in Components
+
+```typescript
+// In TypeScript/JavaScript
+const primaryColor = getColor('primary', '500');
+const mediumSpacing = getSpacing('4');
+const largeFontSize = getFontSize('lg');
+```
+
+#### Using Tokens in CSS
+
+```css
+/* Use CSS custom properties */
+.component {
+  color: var(--color-primary-500);
+  padding: var(--spacing-4);
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Use utility functions for dynamic values */
+.dynamic-component {
+  background-color: var(--color-primary-500);
+  transition: all var(--transition-duration-fast) var(--transition-easing-ease-in-out);
+}
+```
+
+### Token Naming Convention
+
+- **Colors**: `--color-{palette}-{scale}` (e.g., `--color-primary-500`)
+- **Typography**: `--font-{property}-{size}` (e.g., `--font-size-lg`)
+- **Spacing**: `--spacing-{size}` (e.g., `--spacing-4`)
+- **Border Radius**: `--border-radius-{size}` (e.g., `--border-radius-md`)
+- **Shadows**: `--shadow-{size}` (e.g., `--shadow-md`)
+- **Z-Index**: `--z-index-{level}` (e.g., `--z-index-modal`)
+- **Breakpoints**: `--breakpoint-{size}` (e.g., `--breakpoint-lg`)
+- **Transitions**: `--transition-{property}-{size}` (e.g., `--transition-duration-fast`)
+
+### Component-Specific Tokens
+
+Components can define their own tokens for consistent sizing:
+
+```typescript
+// Button component tokens
+const buttonHeight = getButtonHeight('md'); // Returns '2.5rem'
+const buttonPadding = getButtonPadding('md'); // Returns '0.5rem 1rem'
+
+// Input component tokens
+const inputHeight = getInputHeight('lg'); // Returns '3rem'
+const inputPadding = getInputPadding('lg'); // Returns '0.75rem 1rem'
+```
+
+### Theme Support
+
+The tokens system supports light and dark themes:
+
+```css
+/* Light mode (default) */
+:root {
+  --background: var(--color-background-light);
+  --foreground: var(--color-foreground-light);
+}
+
+/* Dark mode */
+.dark {
+  --background: var(--color-background-dark);
+  --foreground: var(--color-foreground-dark);
+}
+```
+
+### Token Type Safety
+
+Use TypeScript types for token safety:
+
+```typescript
+import type { ColorScale, SpacingKey, FontSizeKey } from '@/tokens';
+
+// Type-safe token usage
+const getComponentStyles = (
+  colorScale: ColorScale,
+  spacing: SpacingKey,
+  fontSize: FontSizeKey
+) => {
+  return {
+    color: getColor('primary', colorScale),
+    padding: getSpacing(spacing),
+    fontSize: getFontSize(fontSize),
+  };
+};
 ```
 
 ## TypeScript Standards
@@ -94,7 +230,29 @@ ComponentName/
   ```typescript
   import { Button } from '@/components/atoms/Button';
   import { ProductList } from '@/components/organisms/ProductList';
+  import { tokens, getColor } from '@/tokens';
   ```
+
+### Chakra UI Integration
+
+- **Extend Chakra UI components** when creating custom components:
+  ```typescript
+  import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+  
+  export interface ButtonProps extends ChakraButtonProps {
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    size?: 'sm' | 'md' | 'lg';
+    children: React.ReactNode;
+  }
+  ```
+
+- **Map custom variants to Chakra variants**:
+  ```typescript
+  const chakraVariant = variant === 'primary' ? 'solid' : variant;
+  const chakraColorScheme = variant === 'primary' ? 'blue' : variant === 'secondary' ? 'gray' : undefined;
+  ```
+
+- **Use Chakra UI for complex components** and custom components for design system consistency
 
 ## React Component Standards
 
@@ -108,10 +266,13 @@ ComponentName/
    // 2. Third-party libraries
    import { Button as ChakraButton } from '@chakra-ui/react';
    
-   // 3. Internal components (atoms, molecules, organisms)
+   // 3. Design tokens (if needed)
+   import { getColor, getSpacing } from '@/tokens';
+   
+   // 4. Internal components (atoms, molecules, organisms)
    import { Text } from '../../atoms/Text';
    
-   // 4. Styles
+   // 5. Styles
    import styles from './ComponentName.module.css';
    ```
 
@@ -193,7 +354,49 @@ ComponentName/
   )}
   ```
 
+### Token Usage in Components
+
+- **Use design tokens for dynamic styling**:
+  ```typescript
+  const getComponentStyles = (variant: 'primary' | 'secondary') => {
+    return {
+      backgroundColor: getColor(variant, '500'),
+      color: 'white',
+      padding: getSpacing('4'),
+      borderRadius: getBorderRadius('md'),
+    };
+  };
+  ```
+
+- **Use CSS custom properties** for theme-aware styling:
+  ```typescript
+  const componentStyle = {
+    color: 'var(--color-primary-500)',
+    padding: 'var(--spacing-4)',
+    fontSize: 'var(--font-size-lg)',
+  };
+  ```
+
+- **Combine tokens with component props**:
+  ```typescript
+  const getSizeStyles = (size: 'sm' | 'md' | 'lg') => {
+    return {
+      height: getButtonHeight(size),
+      padding: getButtonPadding(size),
+      fontSize: getFontSize(size === 'sm' ? 'sm' : size === 'lg' ? 'lg' : 'base'),
+    };
+  };
+  ```
+
 ## CSS and Styling Standards
+
+### Design Token Integration
+
+- **Always use design tokens** instead of hardcoded values
+- **Import global styles** that include token CSS custom properties:
+  ```css
+  @import '../tokens/globals.css';
+  ```
 
 ### CSS Modules
 
@@ -207,64 +410,138 @@ ComponentName/
 
 ### CSS Organization
 
-1. **Base styles** first:
+1. **Import statements** first:
+   ```css
+   @import '../tokens/globals.css';
+   ```
+
+2. **Base styles** with token usage:
    ```css
    .component {
-     /* Base styles */
+     /* Use design tokens */
+     color: var(--color-primary-500);
+     padding: var(--spacing-4);
+     font-size: var(--font-size-base);
+     border-radius: var(--border-radius-md);
+     transition: all var(--transition-duration-fast) var(--transition-easing-ease-in-out);
    }
    ```
 
-2. **Variants** grouped together:
+3. **Variants** grouped together:
    ```css
    /* Variants */
-   .primary { }
-   .secondary { }
-   .outline { }
+   .primary {
+     background-color: var(--color-primary-500);
+     color: white;
+   }
+   
+   .primary:hover:not(:disabled) {
+     background-color: var(--color-primary-600);
+   }
    ```
 
-3. **Sizes** grouped together:
+4. **Sizes** grouped together:
    ```css
    /* Sizes */
-   .sm { }
-   .md { }
-   .lg { }
+   .sm {
+     padding: var(--button-padding-sm);
+     font-size: var(--font-size-sm);
+     height: var(--button-height-sm);
+   }
    ```
 
-4. **States** (hover, focus, disabled):
+5. **States** (hover, focus, disabled):
    ```css
-   .button:hover:not(:disabled) { }
-   .button:disabled { }
+   .button:hover:not(:disabled) {
+     background-color: var(--color-primary-600);
+   }
+   
+   .button:disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+   }
    ```
 
 ### CSS Properties
 
-- **Use consistent spacing** with a defined scale (4px, 8px, 12px, 16px, 24px)
-- **Use CSS custom properties** for theme values:
+- **Use design tokens** for all values:
   ```css
-  :root {
-    --color-primary: #3b82f6;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
+  .component {
+    color: var(--color-primary-500);
+    padding: var(--spacing-4);
+    margin: var(--spacing-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: var(--z-index-modal);
   }
   ```
 
 - **Use logical properties** when possible:
   ```css
-  margin-inline-start: 16px;  /* Instead of margin-left */
+  margin-inline-start: var(--spacing-4);  /* Instead of margin-left */
+  padding-block: var(--spacing-2);        /* Instead of padding-top/bottom */
+  ```
+
+- **Use component-specific tokens** for sizing:
+  ```css
+  .button {
+    height: var(--button-height-md);
+    padding: var(--button-padding-md);
+  }
+  
+  .input {
+    height: var(--input-height-md);
+    padding: var(--input-padding-md);
+  }
   ```
 
 ### Responsive Design
 
-- **Mobile-first approach** with media queries:
+- **Mobile-first approach** with design token breakpoints:
   ```css
   .grid {
     display: grid;
     grid-template-columns: 1fr;
+    gap: var(--spacing-4);
   }
   
-  @media (min-width: 640px) {
+  @media (min-width: var(--breakpoint-sm)) {
     .grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: var(--breakpoint-md)) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: var(--breakpoint-lg)) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  ```
+
+- **Use utility classes** for responsive behavior:
+  ```css
+  .responsive-padding {
+    padding: var(--spacing-2);
+  }
+  
+  @media (min-width: var(--breakpoint-md)) {
+    .responsive-padding {
+      padding: var(--spacing-4);
+    }
+  }
+  
+  @media (min-width: var(--breakpoint-lg)) {
+    .responsive-padding {
+      padding: var(--spacing-6);
     }
   }
   ```
@@ -289,6 +566,18 @@ ComponentName/
 - **ComponentName.mock.json** for mock data
 - **ComponentName.model.json** for type definitions
 
+### Design Tokens Files
+
+- **tokens.ts** for main token definitions
+- **types.ts** for TypeScript type definitions
+- **index.ts** for barrel exports and utilities
+- **globals.css** for CSS custom properties and global styles
+
+### Chakra UI Integration Files
+
+- **ChakraComponents.stories.tsx** for Chakra UI component showcase
+- **ui/** directory for Chakra UI wrapper components and providers
+
 ## Import and Export Standards
 
 ### Barrel Exports
@@ -305,10 +594,27 @@ export type { ComponentNameProps } from './ComponentName';
 
 1. **React and React-related imports**
 2. **Third-party libraries** (alphabetical order)
-3. **Internal components** (grouped by hierarchy: atoms, molecules, organisms)
-4. **Utilities and helpers**
-5. **Types and interfaces**
-6. **Styles and assets**
+3. **Design tokens** (if needed for dynamic styling)
+4. **Internal components** (grouped by hierarchy: atoms, molecules, organisms)
+5. **Utilities and helpers**
+6. **Types and interfaces**
+7. **Styles and assets**
+
+### Token Import Examples
+
+```typescript
+// Import specific token categories
+import { colors, spacing, typography } from '@/tokens';
+
+// Import utility functions
+import { getColor, getSpacing, getFontSize } from '@/tokens';
+
+// Import types for type safety
+import type { ColorScale, SpacingKey, FontSizeKey } from '@/tokens';
+
+// Import media query helpers
+import { mediaQuery } from '@/tokens';
+```
 
 ### Named vs Default Exports
 
