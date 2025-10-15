@@ -1,13 +1,13 @@
 import type { Preview } from '@storybook/nextjs-vite'
-import { ChakraProvider } from '@chakra-ui/react'
+import { Provider } from '../src/components/ui/provider'
 import './globals.css'
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <ChakraProvider>
+      <Provider>
         <Story />
-      </ChakraProvider>
+      </Provider>
     ),
   ],
   parameters: {

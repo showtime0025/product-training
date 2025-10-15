@@ -14,6 +14,7 @@ const meta: Meta<typeof Header> = {
     showSearch: {
       control: { type: 'boolean' },
     },
+    onSearch: { action: 'searched' },
   },
 };
 
