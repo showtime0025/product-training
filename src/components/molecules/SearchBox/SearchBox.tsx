@@ -39,14 +39,14 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
 
   return (
     <form onSubmit={handleSubmit} className={`${styles.searchBox} ${className || ''}`}>
-      <div className={styles.inputWrapper}>
-        <Icon name="search" size="sm" color="muted" className={styles.searchIcon} />
+      <div className={styles.searchBox__inputWrapper}>
+        <Icon name="search" size="sm" color="muted" className={styles.searchBox__searchIcon} />
         <Input
           type="text"
           placeholder={placeholder}
           value={query}
           onChange={handleInputChange}
-          className={styles.input}
+          className={styles.searchBox__input}
         />
         {showClearButton && query && (
           <Button
@@ -54,7 +54,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
             variant="ghost"
             size="sm"
             onClick={handleClear}
-            className={styles.clearButton}
+            className={styles.searchBox__clearButton}
           >
             <Icon name="close" size="sm" />
           </Button>

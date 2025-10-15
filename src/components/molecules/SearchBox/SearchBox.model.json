@@ -1,0 +1,37 @@
+{
+  "SearchBoxProps": {
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "default": "Search...",
+      "description": "Placeholder text for the search input"
+    },
+    "onSearch": {
+      "type": "(query: string) => void",
+      "required": false,
+      "description": "Callback function when search is submitted"
+    },
+    "onClear": {
+      "type": "() => void",
+      "required": false,
+      "description": "Callback function when search is cleared"
+    },
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "description": "Default value for the search input"
+    },
+    "showClearButton": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Whether to show the clear button"
+    },
+    "className": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class names"
+    }
+  }
+}

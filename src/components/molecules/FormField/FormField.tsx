@@ -38,10 +38,10 @@ export const FormField: React.FC<FormFieldProps> = ({
 }) => {
   return (
     <div className={`${styles.formField} ${className || ''}`}>
-      <div className={styles.labelWrapper}>
-        <Text variant="caption" weight="medium" className={styles.label}>
+      <div className={styles.formField__labelWrapper}>
+        <Text variant="caption" weight="medium" className={styles.formField__label}>
           {label}
-          {required && <span className={styles.required}>*</span>}
+          {required && <span className={styles.formField__required}>*</span>}
         </Text>
       </div>
       <Input

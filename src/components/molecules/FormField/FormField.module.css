@@ -1,20 +1,30 @@
+/* CSS Custom Properties */
+:root {
+  --form-field-label-color: #374151;
+  --form-field-required-color: #ef4444;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+}
+
+/* Block */
 .formField {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
-.labelWrapper {
+/* Elements */
+.formField__labelWrapper {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--spacing-xs);
 }
 
-.label {
-  color: #374151;
+.formField__label {
+  color: var(--form-field-label-color);
 }
 
-.required {
-  color: #ef4444;
-  margin-left: 2px;
+.formField__required {
+  color: var(--form-field-required-color);
+  margin-inline-start: 2px;
 }

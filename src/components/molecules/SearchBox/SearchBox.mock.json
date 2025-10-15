@@ -1,0 +1,32 @@
+{
+  "default": {
+    "placeholder": "Search...",
+    "showClearButton": true,
+    "defaultValue": ""
+  },
+  "withCustomPlaceholder": {
+    "placeholder": "Search products...",
+    "showClearButton": true,
+    "defaultValue": ""
+  },
+  "withDefaultValue": {
+    "placeholder": "Search...",
+    "defaultValue": "React components",
+    "showClearButton": true
+  },
+  "withoutClearButton": {
+    "placeholder": "Search...",
+    "showClearButton": false,
+    "defaultValue": ""
+  },
+  "withSearchHandler": {
+    "placeholder": "Search...",
+    "showClearButton": true,
+    "defaultValue": ""
+  },
+  "withClearHandler": {
+    "placeholder": "Search...",
+    "defaultValue": "Initial search",
+    "showClearButton": true
+  }
+}

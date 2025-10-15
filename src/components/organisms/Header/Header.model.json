@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "logo": {
+      "type": "React.ReactNode"
+    },
+    "title": {
+      "type": "string"
+    },
+    "showSearch": {
+      "type": "boolean"
+    },
+    "onSearch": {
+      "type": "function",
+      "description": "(query: string) => void"
+    },
+    "navigationItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string" },
+          "href": { "type": "string" },
+          "active": { "type": "boolean" }
+        }
+      }
+    },
+    "userMenu": {
+      "type": "React.ReactNode"
+    },
+    "className": {
+      "type": "string"
+    }
+  }
+}

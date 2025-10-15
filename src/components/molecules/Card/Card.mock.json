@@ -1,0 +1,48 @@
+{
+  "default": {
+    "title": "Card Title",
+    "subtitle": "Card Subtitle",
+    "children": "This is a basic card with default styling.",
+    "variant": "default",
+    "padding": "md"
+  },
+  "withTitle": {
+    "title": "Product Card",
+    "children": "This card has a title and some content.",
+    "variant": "default",
+    "padding": "md"
+  },
+  "withTitleAndSubtitle": {
+    "title": "Product Card",
+    "subtitle": "Premium subscription",
+    "children": "This card includes both a title and subtitle.",
+    "variant": "default",
+    "padding": "md"
+  },
+  "outlined": {
+    "title": "Outlined Card",
+    "children": "This card has an outlined variant with a thicker border.",
+    "variant": "outlined",
+    "padding": "md"
+  },
+  "elevated": {
+    "title": "Elevated Card",
+    "children": "This card has a shadow for elevation effect.",
+    "variant": "elevated",
+    "padding": "md"
+  },
+  "clickable": {
+    "title": "Clickable Card",
+    "subtitle": "Click me!",
+    "children": "This card is clickable and will show an alert.",
+    "variant": "default",
+    "padding": "md"
+  },
+  "productCard": {
+    "title": "Premium Headphones",
+    "subtitle": "High-quality wireless headphones",
+    "children": "Product details and pricing information",
+    "variant": "elevated",
+    "padding": "none"
+  }
+}

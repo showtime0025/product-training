@@ -23,29 +23,29 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const cardClasses = [
     styles.card,
-    styles[variant],
-    styles[`padding-${padding}`],
-    onClick && styles.clickable,
+    styles[`card--${variant}`],
+    styles[`card--padding-${padding}`],
+    onClick && styles['card--clickable'],
     className
   ].filter(Boolean).join(' ');
 
   return (
     <div className={cardClasses} onClick={onClick}>
       {(title || subtitle) && (
-        <div className={styles.header}>
+        <div className={styles.card__header}>
           {title && (
-            <Text variant="h4" weight="semibold" className={styles.title}>
+            <Text variant="h4" weight="semibold" className={styles.card__title}>
               {title}
             </Text>
           )}
           {subtitle && (
-            <Text variant="caption" color="secondary" className={styles.subtitle}>
+            <Text variant="caption" color="secondary" className={styles.card__subtitle}>
               {subtitle}
             </Text>
           )}
         </div>
       )}
-      <div className={styles.content}>
+      <div className={styles.card__content}>
         {children}
       </div>
     </div>

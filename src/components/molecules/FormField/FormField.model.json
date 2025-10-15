@@ -1,0 +1,77 @@
+{
+  "FormFieldProps": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "description": "The label text for the form field"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "The name attribute for the input element"
+    },
+    "type": {
+      "type": "'text' | 'email' | 'password' | 'number' | 'tel' | 'url'",
+      "required": false,
+      "default": "text",
+      "description": "The type of input field"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text for the input"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "Controlled input value"
+    },
+    "defaultValue": {
+      "type": "string",
+      "required": false,
+      "description": "Default value for uncontrolled input"
+    },
+    "required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the field is required"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the field is disabled"
+    },
+    "error": {
+      "type": "string",
+      "required": false,
+      "description": "Error message to display"
+    },
+    "helperText": {
+      "type": "string",
+      "required": false,
+      "description": "Helper text to display below the input"
+    },
+    "onChange": {
+      "type": "(e: React.ChangeEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Callback when input value changes"
+    },
+    "onBlur": {
+      "type": "(e: React.FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Callback when input loses focus"
+    },
+    "onFocus": {
+      "type": "(e: React.FocusEvent<HTMLInputElement>) => void",
+      "required": false,
+      "description": "Callback when input gains focus"
+    },
+    "className": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS class names"
+    }
+  }
+}
