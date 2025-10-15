@@ -8,15 +8,16 @@ This document outlines the coding standards and best practices for the Product T
 ## Table of Contents
 
 1. [Project Structure](#project-structure)
-2. [TypeScript Standards](#typescript-standards)
-3. [React Component Standards](#react-component-standards)
-4. [CSS and Styling Standards](#css-and-styling-standards)
-5. [File Naming Conventions](#file-naming-conventions)
-6. [Import and Export Standards](#import-and-export-standards)
-7. [Storybook Standards](#storybook-standards)
-8. [Testing Standards](#testing-standards)
-9. [Documentation Standards](#documentation-standards)
-10. [Git and Version Control](#git-and-version-control)
+2. [Design Tokens System](#design-tokens-system)
+3. [TypeScript Standards](#typescript-standards)
+4. [React Component Standards](#react-component-standards)
+5. [CSS and Styling Standards](#css-and-styling-standards)
+6. [File Naming Conventions](#file-naming-conventions)
+7. [Import and Export Standards](#import-and-export-standards)
+8. [Storybook Standards](#storybook-standards)
+9. [Testing Standards](#testing-standards)
+10. [Documentation Standards](#documentation-standards)
+11. [Git and Version Control](#git-and-version-control)
 
 ## Project Structure
 
@@ -30,6 +31,18 @@ src/components/
 ├── molecules/      # Simple combinations of atoms (Card, FormField, SearchBox)
 ├── organisms/      # Complex UI components (Header, Footer, ProductList)
 └── index.ts        # Barrel exports for clean imports
+```
+
+### Design Tokens Structure
+
+The project includes a comprehensive design tokens system:
+
+```
+src/tokens/
+├── tokens.ts           # Main design tokens definition
+├── types.ts            # TypeScript type definitions
+├── index.ts            # Barrel exports and utility functions
+└── globals.css         # CSS custom properties and global styles
 ```
 
 ### Component Directory Structure
