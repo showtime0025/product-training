@@ -1,0 +1,50 @@
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.sm {
+  width: 16px;
+  height: 16px;
+}
+
+.md {
+  width: 20px;
+  height: 20px;
+}
+
+.lg {
+  width: 24px;
+  height: 24px;
+}
+
+.xl {
+  width: 32px;
+  height: 32px;
+}
+
+/* Colors */
+.primary {
+  color: #111827;
+}
+
+.secondary {
+  color: #6b7280;
+}
+
+.muted {
+  color: #9ca3af;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.success {
+  color: #10b981;
+}
+
+.warning {
+  color: #f59e0b;
+}

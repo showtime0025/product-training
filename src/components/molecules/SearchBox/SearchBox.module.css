@@ -1,0 +1,38 @@
+.searchBox {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.input {
+  padding-left: 40px !important;
+}
+
+.clearButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px !important;
+  min-width: auto !important;
+}
+
+@media (max-width: 640px) {
+  .searchBox {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
