@@ -187,12 +187,14 @@ const getComponentStyles = (
 
 ### Type Definitions
 
-- **Use explicit interfaces** for component props extending base types:
+- **Use explicit interfaces** for component props:
   ```typescript
-  export interface ButtonProps extends ChakraButtonProps {
+  export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     children: React.ReactNode;
+    onClick?: () => void;
+    disabled?: boolean;
   }
   ```
 
@@ -233,26 +235,31 @@ const getComponentStyles = (
   import { tokens, getColor } from '@/tokens';
   ```
 
-### Chakra UI Integration
+### Component Architecture
 
-- **Extend Chakra UI components** when creating custom components:
+- **Create custom components** that follow the design system:
   ```typescript
-  import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
-  
-  export interface ButtonProps extends ChakraButtonProps {
+  export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
     children: React.ReactNode;
+    onClick?: () => void;
+    disabled?: boolean;
   }
   ```
 
-- **Map custom variants to Chakra variants**:
+- **Use design tokens** for consistent styling:
   ```typescript
-  const chakraVariant = variant === 'primary' ? 'solid' : variant;
-  const chakraColorScheme = variant === 'primary' ? 'blue' : variant === 'secondary' ? 'gray' : undefined;
+  const getButtonStyles = (variant: 'primary' | 'secondary') => {
+    return {
+      backgroundColor: getColor(variant, '500'),
+      color: 'white',
+      padding: getSpacing('4'),
+    };
+  };
   ```
 
-- **Use Chakra UI for complex components** and custom components for design system consistency
+- **Build reusable components** that maintain design system consistency
 
 ## React Component Standards
 
@@ -263,16 +270,13 @@ const getComponentStyles = (
    // 1. React imports
    import React from 'react';
    
-   // 2. Third-party libraries
-   import { Button as ChakraButton } from '@chakra-ui/react';
-   
-   // 3. Design tokens (if needed)
+   // 2. Design tokens (if needed)
    import { getColor, getSpacing } from '@/tokens';
    
-   // 4. Internal components (atoms, molecules, organisms)
+   // 3. Internal components (atoms, molecules, organisms)
    import { Text } from '../../atoms/Text';
    
-   // 5. Styles
+   // 4. Styles
    import styles from './ComponentName.module.css';
    ```
 
@@ -308,13 +312,14 @@ const getComponentStyles = (
 
 - **Use rest/spread operator** for additional props:
   ```typescript
-  <ChakraButton
-    variant={chakraVariant}
-    size={size}
+  <button
+    className={styles.button}
+    onClick={onClick}
+    disabled={disabled}
     {...props}  // Spread remaining props
   >
     {children}
-  </ChakraButton>
+  </button>
   ```
 
 ### Event Handling
@@ -573,10 +578,10 @@ const getComponentStyles = (
 - **index.ts** for barrel exports and utilities
 - **globals.css** for CSS custom properties and global styles
 
-### Chakra UI Integration Files
+### UI Component Files
 
-- **ChakraComponents.stories.tsx** for Chakra UI component showcase
-- **ui/** directory for Chakra UI wrapper components and providers
+- **ComponentName.stories.tsx** for component showcase
+- **ui/** directory for wrapper components and providers
 
 ## Import and Export Standards
 
@@ -593,12 +598,11 @@ export type { ComponentNameProps } from './ComponentName';
 ### Import Organization
 
 1. **React and React-related imports**
-2. **Third-party libraries** (alphabetical order)
-3. **Design tokens** (if needed for dynamic styling)
-4. **Internal components** (grouped by hierarchy: atoms, molecules, organisms)
-5. **Utilities and helpers**
-6. **Types and interfaces**
-7. **Styles and assets**
+2. **Design tokens** (if needed for dynamic styling)
+3. **Internal components** (grouped by hierarchy: atoms, molecules, organisms)
+4. **Utilities and helpers**
+5. **Types and interfaces**
+6. **Styles and assets**
 
 ### Token Import Examples
 

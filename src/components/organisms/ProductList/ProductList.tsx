@@ -1,12 +1,32 @@
 import React from 'react';
-import { Product, ProductListProps } from './ProductList';
 import { Card } from '../../molecules/Card';
 import { Text } from '../../atoms/Text';
 import { Button } from '../../atoms/Button';
 import { Icon } from '../../atoms/Icon';
 import styles from './ProductList.module.css';
 
-import { Product, ProductListProps } from './ProductList';
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price?: number;
+  image?: string;
+  category?: string;
+  rating?: number;
+  tags?: string[];
+}
+
+export interface ProductListProps {
+  products: Product[];
+  loading?: boolean;
+  error?: string;
+  onProductClick?: (product: Product) => void;
+  onAddToCart?: (product: Product) => void;
+  onFavorite?: (product: Product) => void;
+  showAddToCart?: boolean;
+  showFavorite?: boolean;
+  className?: string;
+}
 
 export const ProductList: React.FC<ProductListProps> = ({
   products,

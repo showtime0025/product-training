@@ -1,10 +1,11 @@
 import React from 'react';
-import { Input as ChakraInput, FormControl, FormLabel, FormErrorMessage, FormHelperText, InputProps as ChakraInputProps } from '@chakra-ui/react';
+import styles from './Input.module.css';
 
-export interface InputProps extends ChakraInputProps {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   helperText?: string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -12,19 +13,41 @@ export const Input: React.FC<InputProps> = ({
   error,
   helperText,
   id,
+  size = 'md',
+  className,
   ...props
 }) => {
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
+  const inputClasses = [
+    styles.input,
+    styles[`input--${size}`],
+    error && styles['input--error'],
+    className
+  ].filter(Boolean).join(' ');
+
   return (
-    <FormControl isInvalid={!!error}>
-      {label && <FormLabel htmlFor={inputId}>{label}</FormLabel>}
-      <ChakraInput
+    <div className={styles.formControl}>
+      {label && (
+        <label htmlFor={inputId} className={styles.label}>
+          {label}
+        </label>
+      )}
+      <input
         id={inputId}
+        className={inputClasses}
         {...props}
       />
-      {error && <FormErrorMessage>{error}</FormErrorMessage>}
-      {helperText && !error && <FormHelperText>{helperText}</FormHelperText>}
-    </FormControl>
+      {error && (
+        <div className={styles.errorMessage}>
+          {error}
+        </div>
+      )}
+      {helperText && !error && (
+        <div className={styles.helperText}>
+          {helperText}
+        </div>
+      )}
+    </div>
   );
 };

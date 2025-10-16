@@ -1,56 +1,139 @@
 /* Import design tokens */
 @import '../../../tokens/globals.css';
 
-.container {
+/* Form control container */
+.formControl {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
+  width: 100%;
 }
 
+/* Label styles */
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-secondary-700);
-  margin-bottom: var(--spacing-0-5);
+  color: var(--color-foreground);
+  margin-bottom: var(--spacing-1);
+  cursor: pointer;
 }
 
+/* Base input styles */
 .input {
-  padding: var(--input-padding-md);
-  border: 1px solid var(--color-secondary-300);
-  border-radius: var(--border-radius-md);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  transition: border-color var(--transition-duration-fast) var(--transition-easing-ease-in-out), 
-              box-shadow var(--transition-duration-fast) var(--transition-easing-ease-in-out);
+  width: 100%;
+  border: 1px solid var(--color-neutral-300);
   background-color: var(--background);
-  height: var(--input-height-md);
+  color: var(--color-foreground);
+  border-radius: var(--border-radius-md);
+  font-family: var(--font-family-sans);
+  transition: all var(--transition-duration-fast) var(--transition-easing-ease-in-out);
+  outline: none;
 }
 
 .input:focus {
-  outline: none;
   border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px var(--color-primary-100);
+  box-shadow: 0 0 0 1px var(--color-primary-500);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--color-primary-400);
 }
 
 .input::placeholder {
-  color: var(--color-secondary-400);
+  color: var(--color-neutral-400);
 }
 
-.input.error {
+/* Input sizes */
+.input--sm {
+  height: var(--input-height-sm);
+  padding: var(--input-padding-sm);
+  font-size: var(--font-size-sm);
+}
+
+.input--md {
+  height: var(--input-height-md);
+  padding: var(--input-padding-md);
+  font-size: var(--font-size-base);
+}
+
+.input--lg {
+  height: var(--input-height-lg);
+  padding: var(--input-padding-lg);
+  font-size: var(--font-size-lg);
+}
+
+/* Error state */
+.input--error {
   border-color: var(--color-error-500);
 }
 
-.input.error:focus {
+.input--error:focus {
   border-color: var(--color-error-500);
-  box-shadow: 0 0 0 3px var(--color-error-100);
+  box-shadow: 0 0 0 1px var(--color-error-500);
 }
 
-.helperText {
-  font-size: var(--font-size-xs);
-  color: var(--color-secondary-600);
+/* Disabled state */
+.input:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+  border-color: var(--color-neutral-200);
 }
 
-.errorText {
+.input:disabled::placeholder {
+  color: var(--color-neutral-300);
+}
+
+/* Error message */
+.errorMessage {
   font-size: var(--font-size-xs);
   color: var(--color-error-500);
+  margin-top: var(--spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: var(--font-size-xs);
+}
+
+/* Helper text */
+.helperText {
+  font-size: var(--font-size-xs);
+  color: var(--color-secondary-500);
+  margin-top: var(--spacing-1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .input {
+    background-color: var(--color-background-dark);
+    color: var(--color-foreground-dark);
+    border-color: var(--color-neutral-600);
+  }
+  
+  .input:focus {
+    border-color: var(--color-primary-400);
+    box-shadow: 0 0 0 1px var(--color-primary-400);
+  }
+  
+  .input:hover:not(:disabled) {
+    border-color: var(--color-primary-500);
+  }
+  
+  .input::placeholder {
+    color: var(--color-neutral-500);
+  }
+  
+  .label {
+    color: var(--color-foreground-dark);
+  }
+  
+  .input:disabled {
+    background-color: var(--color-neutral-800);
+    color: var(--color-neutral-400);
+    border-color: var(--color-neutral-700);
+  }
 }

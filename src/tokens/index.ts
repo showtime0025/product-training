@@ -5,6 +5,9 @@
  * throughout the application.
  */
 
+// Import tokens first to avoid circular dependency
+import { tokens } from './tokens';
+
 export { tokens, getCSSVarName, createCSSVars } from './tokens';
 export type {
   ColorScale,
@@ -60,10 +63,10 @@ export const colors = {
 export const spacing = tokens.spacing;
 export const typography = tokens.typography;
 export const borderRadius = tokens.borderRadius;
-export const boxShadow = tokens.boxShadow;
+export const boxShadow = tokens.shadows;
 export const zIndex = tokens.zIndex;
 export const breakpoints = tokens.breakpoints;
-export const transition = tokens.transition;
+export const transition = tokens.transitions;
 
 // Utility functions for common token operations
 export const getColor = (palette: keyof typeof colors, scale: ColorScale): string => {
@@ -75,14 +78,14 @@ export const getSpacing = (size: SpacingKey): string => {
 };
 
 export const getFontSize = (size: FontSizeKey): string => {
-  return typography.fontSize[size];
+  return typography.fontSizes[size];
 };
 
 export const getBorderRadius = (size: BorderRadiusKey): string => {
   return borderRadius[size];
 };
 
-export const getBoxShadow = (size: BoxShadowKey): string => {
+export const getShadow = (size: BoxShadowKey): string => {
   return boxShadow[size];
 };
 

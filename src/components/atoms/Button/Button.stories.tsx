@@ -28,39 +28,93 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: mockData.buttons[0],
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Primary Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Secondary: Story = {
-  args: mockData.buttons[1],
+  args: {
+    variant: 'secondary',
+    size: 'md',
+    children: 'Secondary Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Outline: Story = {
-  args: mockData.buttons[2],
+  args: {
+    variant: 'outline',
+    size: 'md',
+    children: 'Outline Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Ghost: Story = {
-  args: mockData.buttons[3],
+  args: {
+    variant: 'ghost',
+    size: 'md',
+    children: 'Ghost Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Small: Story = {
-  args: mockData.buttons[4],
+  args: {
+    variant: 'primary',
+    size: 'sm',
+    children: 'Small Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Medium: Story = {
-  args: mockData.buttons[0],
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Medium Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Large: Story = {
-  args: mockData.buttons[5],
+  args: {
+    variant: 'primary',
+    size: 'lg',
+    children: 'Large Button',
+    disabled: false,
+    isLoading: false,
+  },
 };
 
 export const Disabled: Story = {
-  args: mockData.buttons[6],
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Disabled Button',
+    disabled: true,
+    isLoading: false,
+  },
 };
 
 export const Loading: Story = {
-  args: mockData.buttons[7],
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Loading Button',
+    disabled: false,
+    isLoading: true,
+  },
 };
 
 export const AllVariants: Story = {

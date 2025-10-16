@@ -1,13 +1,14 @@
+import React from 'react'
 import type { Preview } from '@storybook/nextjs-vite'
-import { Provider } from '../src/components/ui/provider'
+import { StorybookProvider } from './StorybookProvider'
 import './globals.css'
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <Provider>
+      <StorybookProvider>
         <Story />
-      </Provider>
+      </StorybookProvider>
     ),
   ],
   parameters: {

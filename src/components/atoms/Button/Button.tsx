@@ -1,30 +1,45 @@
 import React from 'react';
-import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
+import styles from './Button.module.css';
 
-export interface ButtonProps extends ChakraButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
+  isLoading?: boolean;
   children: React.ReactNode;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
+  isLoading = false,
+  disabled = false,
+  className,
   children,
   ...props
 }) => {
-  // Map our custom variants to Chakra variants
-  const chakraVariant = variant === 'primary' ? 'solid' : variant;
-  const chakraColorScheme = variant === 'primary' ? 'blue' : variant === 'secondary' ? 'gray' : undefined;
+  const buttonClasses = [
+    styles.button,
+    styles[`button--${variant}`],
+    styles[`button--${size}`],
+    isLoading && styles['button--loading'],
+    disabled && styles['button--disabled'],
+    className
+  ].filter(Boolean).join(' ');
 
   return (
-    <ChakraButton
-      variant={chakraVariant}
-      size={size}
-      colorScheme={chakraColorScheme}
+    <button
+      className={buttonClasses}
+      disabled={disabled || isLoading}
       {...props}
     >
-      {children}
-    </ChakraButton>
+      {isLoading ? (
+        <>
+          <span className={styles.spinner}></span>
+          Loading...
+        </>
+      ) : (
+        children
+      )}
+    </button>
   );
 };
